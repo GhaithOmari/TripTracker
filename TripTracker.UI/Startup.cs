@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TripTracker.UI.Data;
 using TripTracker.UI.Services;
 using System.Net.Http;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace TripTracker.UI
 {
@@ -58,6 +59,7 @@ namespace TripTracker.UI
 					options.Conventions.AuthorizePage("/Account/Logout");
 				});
 
+			services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Info { Title = "Trip Tracker", Version = "v1" }));
 			// Register no-op EmailSender used by account confirmation and password reset during development
 			// For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
 			services.AddSingleton<IEmailSender, EmailSender>();
@@ -66,11 +68,15 @@ namespace TripTracker.UI
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
-			if (env.IsDevelopment())
+
+			app.UseSwagger();
+
+			if (env.IsDevelopment() || env.IsStaging())
 			{
 				app.UseBrowserLink();
 				app.UseDeveloperExceptionPage();
 				app.UseDatabaseErrorPage();
+				app.UseSwaggerUI(option => option.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip Tracker"));
 			}
 			else
 			{
