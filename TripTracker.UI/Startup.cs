@@ -59,7 +59,6 @@ namespace TripTracker.UI
 					options.Conventions.AuthorizePage("/Account/Logout");
 				});
 
-			services.AddSwaggerGen(options => options.SwaggerDoc("v1", new Info { Title = "Trip Tracker", Version = "v1" }));
 			// Register no-op EmailSender used by account confirmation and password reset during development
 			// For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
 			services.AddSingleton<IEmailSender, EmailSender>();
@@ -69,14 +68,12 @@ namespace TripTracker.UI
 		public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 		{
 
-			app.UseSwagger();
 
-			if (env.IsDevelopment() || env.IsStaging())
+			if (env.IsDevelopment())
 			{
 				app.UseBrowserLink();
 				app.UseDeveloperExceptionPage();
 				app.UseDatabaseErrorPage();
-				app.UseSwaggerUI(option => option.SwaggerEndpoint("/swagger/v1/swagger.json", "Trip Tracker"));
 			}
 			else
 			{
