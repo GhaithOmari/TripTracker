@@ -16,7 +16,6 @@ namespace TripTracker.BackService.Models
 				Name = "MVP summit",
 				StartDate = new DateTime(2018,3,5),
 				EndDate = new DateTime(2018,3,5),
-
 			},
 			new Trip
 			{
@@ -24,7 +23,6 @@ namespace TripTracker.BackService.Models
 				Name = "DevIntersection Orlando 2018",
 				StartDate = new DateTime(2018,3,25),
 				EndDate = new DateTime(2018,3,27),
-
 			},
 			new Trip
 			{
@@ -32,7 +30,6 @@ namespace TripTracker.BackService.Models
 				Name = "Build 2018",
 				StartDate = new DateTime(2018,5,7),
 				EndDate = new DateTime(2018,5,9),
-
 			}
 		};
 
