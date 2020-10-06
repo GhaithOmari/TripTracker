@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ namespace TripTracker.UI.Pages.Trips
 
 		public DetailsModel(IApiClient client)
 		{
-			client = _client;
+			_client = client;
 		}
 
 		public Trip Trip { get; set; }

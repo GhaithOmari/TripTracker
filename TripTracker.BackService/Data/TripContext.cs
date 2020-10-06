@@ -14,7 +14,7 @@ namespace TripTracker.BackService.Data
 			: base(options) { }
 
 		public TripContext() { }
-
+		
 		public DbSet<Trip> Trips { set; get; }
 
 		public static void SeedData(IServiceProvider serviceProvider)

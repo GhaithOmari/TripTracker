@@ -54,7 +54,7 @@ namespace TripTracker.UI.Services
 
 		public async Task RemoveTripAsync(int id)
 		{
-			var response = await _HttpClient.DeleteAsync($"api/Trips/{id}");
+			var response = await _HttpClient.DeleteAsync($"/api/Trips/{id}");
 			response.EnsureSuccessStatusCode();
 		}
 	}

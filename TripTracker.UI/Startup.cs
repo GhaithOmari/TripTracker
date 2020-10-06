@@ -35,13 +35,7 @@ namespace TripTracker.UI
 				.AddEntityFrameworkStores<ApplicationDbContext>()
 				.AddDefaultTokenProviders();
 
-			#region API Client Configs
-				//var httpClient = new HttpClient
-				//{
-				//	BaseAddress = new Uri(Configuration["serviceUrl"])
-				//};
-				//services.AddSingleton(httpClient);
-				//services.AddSingleton<IApiClient, ApiClient>();
+			#region API Client Configuration
 				services.AddScoped(_ =>
 					new HttpClient
 					{
@@ -52,13 +46,16 @@ namespace TripTracker.UI
 			#endregion
 
 
-				services.AddMvc()
-				.AddRazorPagesOptions(options =>
-				{
-					options.Conventions.AuthorizeFolder("/Account/Manage");
-					options.Conventions.AuthorizePage("/Account/Logout");
-				});
+			services.AddMvc()
+			.AddRazorPagesOptions(Security.Configure);
 
+			services.AddAuthorization(configure => 
+			{
+				configure.AddPolicy("CreateTrips", policy =>
+				{
+					policy.RequireUserName("gaa@vitronic.com").Build();
+				});
+			});
 			// Register no-op EmailSender used by account confirmation and password reset during development
 			// For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
 			services.AddSingleton<IEmailSender, EmailSender>();

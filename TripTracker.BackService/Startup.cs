@@ -26,10 +26,10 @@ namespace TripTracker.BackService
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddTransient<Models.Repository>();
+			//services.AddTransient<Models.Repository>();
 			services.AddMvc();
-
-			services.AddDbContext<TripContext>(options => options.UseSqlite("Data Source= TripsDbFile.db"));
+			
+			services.AddDbContext<TripContext>(options => options.UseSqlite("Data Source=TripsDbFile.db"));
 
 			services.AddSwaggerGen(options =>
 				options.SwaggerDoc("v1", new Info { Title = "TripTracker", Version = "v1" })
