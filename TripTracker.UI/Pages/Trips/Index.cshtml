@@ -6,10 +6,12 @@
 
 @{
 	ViewData["Title"] = "Index";
+	//AuthorizationResult mche = await Auth.AuthorizeAsync(User, null, "CreateTrips");
+	//bool success = mche.Succeeded;
 }
 
 <h2>Index</h2>
-@if (await Auth.AuthorizeAsync(User, null, "CreateTrips") == AuthorizationResult.Success())//(SignInManager.IsSignedIn(User))
+@if ((await Auth.AuthorizeAsync(User, null, "CreateTrips")).Succeeded)//(SignInManager.IsSignedIn(User)) - Checking if the User CAN access or NOT.
 {
 	<p>
 		<a asp-page="Create">Create New</a>

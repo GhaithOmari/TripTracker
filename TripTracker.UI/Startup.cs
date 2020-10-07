@@ -53,7 +53,8 @@ namespace TripTracker.UI
 			{
 				configure.AddPolicy("CreateTrips", policy =>
 				{
-					policy.RequireUserName("gaa@vitronic.com").Build();
+					policy.RequireUserName("gaa@vitronic.com")
+					.Build();
 				});
 			});
 			// Register no-op EmailSender used by account confirmation and password reset during development
@@ -81,7 +82,13 @@ namespace TripTracker.UI
 
 			app.UseAuthentication();
 
-			app.UseMvc();
+			app.UseMvcWithDefaultRoute();
+			/*app.UseMvc(routes =>  // this is to compine default rout with the areas routs.
+			{
+				routes.MapRoute(
+					name: "areaRoute",
+					template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+			});*/
 		}
 	}
 }
